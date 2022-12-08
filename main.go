@@ -30,10 +30,6 @@ func main() {
 		a = romanToInt(digits[0])
 		b = romanToInt(digits[2])
 		romandigits = true
-		if (a < b) || (a-b == 0) {
-			fmt.Println("Ошибка, в Римской системе нет нуля и отрицательных чисел!")
-			return
-		}
 	case (romanToInt(digits[0]) == 0 && romanToInt(digits[2]) != 0) || (romanToInt(digits[0]) != 0 && romanToInt(digits[2]) == 0):
 		fmt.Println("Ошибка, используются одновременно разные системы счисления")
 		return
@@ -49,6 +45,10 @@ func main() {
 	res, err := Calc(a, action, b) // производим вычисление и выводим результат на консоль
 	if err == nil {
 		if romandigits {
+			if res < 0 || res == 0 {
+				fmt.Println("Ошибка, в Римской системе нет нуля и отрицательных чисел!")
+				return
+			}
 			fmt.Println(Roman(res))
 		} else {
 			fmt.Println(res)
